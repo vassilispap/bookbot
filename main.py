@@ -10,7 +10,7 @@ def add_letter_to_dict(add_char, dict_letters):
     return dict_letters
 
 def sort_on(dict):
-    return dict    
+    return dict["num"]   
 
 with open("books/frankenstein.txt") as f:
     file_contents = f.read()
@@ -24,12 +24,13 @@ for letter in file_contents:
 list_report =[]
 for letter in dict1:
     if letter.isalpha():
-        list_report.append({letter,dict1[letter]})
+        list_report.append({"char": letter, "num": dict1[letter]})
+#        list_report.append({letter: dict1[letter]})
 list_report.sort(reverse=True, key=sort_on)
-print(list_report)
+#print(list_report)
 
-#print("--- Begin report of books/frankenstein.txt ---")
-#print(f"{words_number} words found in the document")
-#for entry in dict1:
-#    print(f"The '{entry}' character was found {dict1[entry]} times")
-#print("--- End report ---")
+print("--- Begin report of books/frankenstein.txt ---")
+print(f"{words_number} words found in the document")
+for entry in list_report:
+    print(f"The '{entry["char"]}' character was found {entry["num"]} times")
+print("--- End report ---")
